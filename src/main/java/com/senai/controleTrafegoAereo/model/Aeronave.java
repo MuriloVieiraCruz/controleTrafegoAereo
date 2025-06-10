@@ -1,13 +1,18 @@
 package com.senai.controleTrafegoAereo.model;
 
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
 import java.time.Duration;
 import java.time.LocalDateTime;
 
+@Entity(name = "Aeronave")
+@Table(name = "tb_aeronave")
 public class Aeronave {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private String id;
     
     @NotBlank(message = "O tipo da aeronave é obrigatório")
@@ -63,5 +68,16 @@ public class Aeronave {
 
     public void setPrioridade(Integer prioridade) {
         this.prioridade = prioridade;
+    }
+
+    public Aeronave() {
+    }
+
+    public Aeronave(String id, String tipo, Integer prioridade, LocalDateTime solicitacao, LocalDateTime atendimento) {
+        this.id = id;
+        this.tipo = tipo;
+        this.prioridade = prioridade;
+        this.solicitacao = solicitacao;
+        this.atendimento = atendimento;
     }
 }
