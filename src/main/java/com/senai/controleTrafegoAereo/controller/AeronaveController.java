@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/aeronaves")
-public class VooController {
+public class AeronaveController {
 
     @Autowired
     private VooService service;

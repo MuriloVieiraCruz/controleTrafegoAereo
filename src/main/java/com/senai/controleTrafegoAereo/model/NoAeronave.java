@@ -1,12 +1,12 @@
 package com.senai.controleTrafegoAereo.model;
 
-public class No {
+public class NoAeronave {
 
     private Aeronave valor;
     private int prioridade;
-    private No proximo;
+    private NoAeronave proximo;
 
-    public No(Aeronave valor, int prioridade) {
+    public NoAeronave(Aeronave valor, int prioridade) {
         this.valor = valor;
         this.prioridade = prioridade;
     }
@@ -27,11 +27,11 @@ public class No {
         this.prioridade = prioridade;
     }
 
-    public No getProximo() {
+    public NoAeronave getProximo() {
         return proximo;
     }
 
-    public void setProximo(No proximo) {
+    public void setProximo(NoAeronave proximo) {
         this.proximo = proximo;
     }
 }

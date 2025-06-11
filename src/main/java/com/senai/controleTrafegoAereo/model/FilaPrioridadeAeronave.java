@@ -1,15 +1,15 @@
 package com.senai.controleTrafegoAereo.model;
 
-public class FilaPrioridade {
+public class FilaPrioridadeAeronave {
 
-    private No inicio;
-    private No fim;
+    private NoAeronave inicio;
+    private NoAeronave fim;
 
     public boolean isEmpty() {
         return this.inicio == null;
     }
 
-    public void enqueue(No atual) {
+    public void enqueue(NoAeronave atual) {
 
         if (isEmpty()) {
             this.inicio = atual;
@@ -24,7 +24,7 @@ public class FilaPrioridade {
                     this.fim.setProximo(atual);
                     this.fim = atual;
                 } else {
-                    No auxiliar = inicio;
+                    NoAeronave auxiliar = inicio;
                     while(auxiliar.getProximo() != null && auxiliar.getProximo().getPrioridade() > atual.getPrioridade()) {
                         auxiliar = auxiliar.getProximo();
                     }
@@ -50,7 +50,7 @@ public class FilaPrioridade {
 
     public String view() {
         StringBuilder valores = new StringBuilder();
-        No aux = inicio;
+        NoAeronave aux = inicio;
 
         while(aux != null) {
             valores.append(aux.getValor().toString());
@@ -60,11 +60,27 @@ public class FilaPrioridade {
         return valores.toString();
     }
 
-    public No getInicio() {
+    public int contarAeronavesNaFrente(int prioridadeReferencia) {
+        int count = 0;
+        NoAeronave atual = inicio;
+
+        while (atual != null) {
+            if (atual.getPrioridade() < prioridadeReferencia) {
+                count++; // Tem prioridade maior (ex: 1 < 2) → vai na frente
+            } else if (atual.getPrioridade() == prioridadeReferencia) {
+                count++; // Mesma prioridade → chegou antes → também vai na frente
+            }
+            atual = atual.getProximo(); // segue para o próximo nó
+        }
+
+        return count;
+    }
+
+    public NoAeronave getInicio() {
         return inicio;
     }
 
-    public No getFim() {
+    public NoAeronave getFim() {
         return fim;
     }
 }
