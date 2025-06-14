@@ -3,6 +3,7 @@ package com.senai.controleTrafegoAereo.controller;
 import com.senai.controleTrafegoAereo.model.Aeronave;
 import com.senai.controleTrafegoAereo.service.VooService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,9 +20,13 @@ public class AeronaveController {
         return ResponseEntity.ok("Solicitação registrada");
     }
 
-    @PostMapping("/atender")
-    public ResponseEntity<Aeronave> atender() {
-        return ResponseEntity.ok(service.atenderAeronave());
+    @PostMapping("/atender/{pista}")
+    public ResponseEntity<?> atenderPorPista(@PathVariable int pista) {
+        Aeronave aeronave = service.atenderAeronavePorPista(pista);
+        if (aeronave == null) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Nenhuma aeronave na pista " + pista);
+        }
+        return ResponseEntity.ok(aeronave);
     }
 
     @GetMapping("/relatorio")

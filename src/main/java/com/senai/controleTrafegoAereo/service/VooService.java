@@ -1,9 +1,6 @@
 package com.senai.controleTrafegoAereo.service;
 
-import com.senai.controleTrafegoAereo.model.Aeronave;
-import com.senai.controleTrafegoAereo.model.FilaPrioridadeAeronave;
-import com.senai.controleTrafegoAereo.model.HistoricoAeronaves;
-import com.senai.controleTrafegoAereo.model.NoAeronave;
+import com.senai.controleTrafegoAereo.model.*;
 import com.senai.controleTrafegoAereo.utils.BubbleSortUtil;
 import org.springframework.stereotype.Service;
 
@@ -12,17 +9,17 @@ import java.time.LocalDateTime;
 @Service
 public class VooService {
 
+    private final GerenciadorPistas gerenciador = new GerenciadorPistas(3);
     private final FilaPrioridadeAeronave fila = new FilaPrioridadeAeronave();
     private final HistoricoAeronaves historico = new HistoricoAeronaves(100);
 
     public void solicitarAeronave(Aeronave aeronave) {
         aeronave.setSolicitacao(LocalDateTime.now());
-        NoAeronave noAeronave = new NoAeronave(aeronave, aeronave.getPrioridade());
-        fila.enqueue(noAeronave);
+        gerenciador.adicionarAeronaveNaMelhorPista(aeronave);
     }
 
-    public Aeronave atenderAeronave() {
-        Aeronave aeronave = fila.dequeue();
+    public Aeronave atenderAeronavePorPista(int pista) {
+        Aeronave aeronave = gerenciador.atenderDaPista(pista);
 
         if (aeronave != null) {
             aeronave.setAtendimento(LocalDateTime.now());
