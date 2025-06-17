@@ -1,19 +1,12 @@
 package com.senai.controleTrafegoAereo.model;
 
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
-
 import java.time.Duration;
 import java.time.LocalDateTime;
 
 public class Aeronave {
 
     private String id;
-    
-    @NotBlank(message = "O tipo da aeronave é obrigatório")
     private String tipo;
-
-    @NotNull(message = "É obrigatório informar uma prioridade")
     private Integer prioridade;
     private LocalDateTime solicitacao;
     private LocalDateTime atendimento;

@@ -65,12 +65,12 @@ public class FilaPrioridadeAeronave {
         NoAeronave atual = inicio;
 
         while (atual != null) {
-            if (atual.getPrioridade() < prioridadeReferencia) {
-                count++; // Tem prioridade maior (ex: 1 < 2) → vai na frente
+            if (atual.getPrioridade() > prioridadeReferencia) {
+                count++;
             } else if (atual.getPrioridade() == prioridadeReferencia) {
-                count++; // Mesma prioridade → chegou antes → também vai na frente
+                count++;
             }
-            atual = atual.getProximo(); // segue para o próximo nó
+            atual = atual.getProximo();
         }
 
         return count;
