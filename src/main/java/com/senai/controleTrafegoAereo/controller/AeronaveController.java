@@ -1,7 +1,7 @@
 package com.senai.controleTrafegoAereo.controller;
 
 import com.senai.controleTrafegoAereo.model.Aeronave;
-import com.senai.controleTrafegoAereo.service.VooService;
+import com.senai.controleTrafegoAereo.service.AeronaveService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 public class AeronaveController {
 
     @Autowired
-    private VooService service;
+    private AeronaveService service;
 
     @PostMapping("/solicitar")
     public ResponseEntity<?> solicitar(@RequestBody Aeronave aeronave) {
@@ -20,11 +20,11 @@ public class AeronaveController {
         return ResponseEntity.ok("Solicitação registrada");
     }
 
-    @PostMapping("/atender/{pista}")
-    public ResponseEntity<?> atenderPorPista(@PathVariable int pista) {
-        Aeronave aeronave = service.atenderAeronavePorPista(pista);
+    @PostMapping("/atender")
+    public ResponseEntity<?> atenderPorPista() {
+        Aeronave aeronave = service.atenderAeronavePorPista();
         if (aeronave == null) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Nenhuma aeronave na pista " + pista);
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Nenhuma aeronave na pista ");
         }
         return ResponseEntity.ok(aeronave);
     }

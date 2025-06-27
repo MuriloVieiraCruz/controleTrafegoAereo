@@ -6,7 +6,6 @@ import java.time.LocalDateTime;
 public class Aeronave {
 
     private String id;
-    private String tipo;
     private Integer prioridade;
     private LocalDateTime solicitacao;
     private LocalDateTime atendimento;
@@ -24,14 +23,6 @@ public class Aeronave {
 
     public void setId(String id) {
         this.id = id;
-    }
-
-    public String getTipo() {
-        return tipo;
-    }
-
-    public void setTipo(String tipo) {
-        this.tipo = tipo;
     }
 
     public LocalDateTime getSolicitacao() {

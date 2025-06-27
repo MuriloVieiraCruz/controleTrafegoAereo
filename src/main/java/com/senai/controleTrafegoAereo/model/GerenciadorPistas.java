@@ -12,6 +12,20 @@ public class GerenciadorPistas {
         }
     }
 
+    public int pistaMaisCheia() {
+        int indiceMaisCheia = -1;
+        int maiorTamanho   = 0;
+
+        for (int i = 0; i < pistas.length; i++) {
+            int tamanho = pistas[i].getTamanho();
+            if (tamanho > maiorTamanho) {
+                maiorTamanho   = tamanho;
+                indiceMaisCheia = i;
+            }
+        }
+        return indiceMaisCheia;
+    }
+
     public int escolherMelhorPista(Aeronave aeronave) {
         int prioridadeAeronave = aeronave.getPrioridade();
         int melhorIndice = 0;

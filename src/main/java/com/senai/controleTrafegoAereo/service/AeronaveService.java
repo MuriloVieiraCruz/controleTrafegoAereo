@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDateTime;
 
 @Service
-public class VooService {
+public class AeronaveService {
 
     private final GerenciadorPistas gerenciador = new GerenciadorPistas(3);
     private final FilaPrioridadeAeronave fila = new FilaPrioridadeAeronave();
@@ -18,7 +18,12 @@ public class VooService {
         gerenciador.adicionarAeronaveNaMelhorPista(aeronave);
     }
 
-    public Aeronave atenderAeronavePorPista(int pista) {
+    public Aeronave atenderAeronavePorPista() {
+        int pista = gerenciador.pistaMaisCheia();
+        if (pista == -1) {
+            return null;
+        }
+
         Aeronave aeronave = gerenciador.atenderDaPista(pista);
 
         if (aeronave != null) {

@@ -4,6 +4,7 @@ public class FilaPrioridadeAeronave {
 
     private NoAeronave inicio;
     private NoAeronave fim;
+    private int tamanho = 0;
 
     public boolean isEmpty() {
         return this.inicio == null;
@@ -34,6 +35,8 @@ public class FilaPrioridadeAeronave {
                 }
             }
         }
+
+        tamanho++;
     }
 
     public Aeronave dequeue() {
@@ -43,6 +46,7 @@ public class FilaPrioridadeAeronave {
             if (inicio == null) {
                 fim = null;
             }
+            tamanho--;
             return elemento;
         }
         return null;
@@ -82,5 +86,9 @@ public class FilaPrioridadeAeronave {
 
     public NoAeronave getFim() {
         return fim;
+    }
+
+    public int getTamanho() {
+        return tamanho;
     }
 }
