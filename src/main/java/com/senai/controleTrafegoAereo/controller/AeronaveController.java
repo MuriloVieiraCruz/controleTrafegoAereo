@@ -1,11 +1,14 @@
 package com.senai.controleTrafegoAereo.controller;
 
 import com.senai.controleTrafegoAereo.model.Aeronave;
+import com.senai.controleTrafegoAereo.model.FilaPrioridadeAeronave;
 import com.senai.controleTrafegoAereo.service.AeronaveService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.Arrays;
 
 @RestController
 @RequestMapping("/api/aeronaves")
@@ -27,6 +30,12 @@ public class AeronaveController {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Nenhuma aeronave na pista ");
         }
         return ResponseEntity.ok(aeronave);
+    }
+
+    @GetMapping("/pistas")
+    public ResponseEntity<?> visualizarPistas() {
+        FilaPrioridadeAeronave[] pistas = service.visualizarPistas();
+        return ResponseEntity.ok(pistas);
     }
 
     @GetMapping("/relatorio")

@@ -10,7 +10,6 @@ import java.time.LocalDateTime;
 public class AeronaveService {
 
     private final GerenciadorPistas gerenciador = new GerenciadorPistas(3);
-    private final FilaPrioridadeAeronave fila = new FilaPrioridadeAeronave();
     private final HistoricoAeronaves historico = new HistoricoAeronaves(100);
 
     public void solicitarAeronave(Aeronave aeronave) {
@@ -32,6 +31,10 @@ public class AeronaveService {
         }
 
         return aeronave;
+    }
+
+    public FilaPrioridadeAeronave[] visualizarPistas() {
+        return gerenciador.getPistas();
     }
 
     public Aeronave[] gerarRelatorioOrdenado() {

@@ -36,7 +36,7 @@ public class FilaPrioridadeAeronave {
             }
         }
 
-        tamanho++;
+        this.tamanho++;
     }
 
     public Aeronave dequeue() {
