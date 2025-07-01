@@ -12,18 +12,28 @@ public class GerenciadorPistas {
         }
     }
 
-    public int pistaMaisCheia() {
-        int indiceMaisCheia = -1;
-        int maiorTamanho   = 0;
+    public int selecionarPistaParaAtendimento() {
+        int indiceEscolhido      = -1;
+        int melhorPrioridade     = Integer.MIN_VALUE;
+        int maiorTamanhoEmpate   = -1;
 
         for (int i = 0; i < pistas.length; i++) {
+            if (pistas[i].isEmpty()) continue;
+
+            int prioridadeFrente = pistas[i].prioridadeDaFrente();
             int tamanho = pistas[i].getTamanho();
-            if (tamanho > maiorTamanho) {
-                maiorTamanho   = tamanho;
-                indiceMaisCheia = i;
+
+            if (prioridadeFrente > melhorPrioridade) {
+                melhorPrioridade   = prioridadeFrente;
+                maiorTamanhoEmpate = tamanho;
+                indiceEscolhido = i;
+
+            } else if (prioridadeFrente == melhorPrioridade && tamanho > maiorTamanhoEmpate) {
+                maiorTamanhoEmpate = tamanho;
+                indiceEscolhido = i;
             }
         }
-        return indiceMaisCheia;
+        return indiceEscolhido;
     }
 
     public int escolherMelhorPista(Aeronave aeronave) {

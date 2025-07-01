@@ -80,6 +80,10 @@ public class FilaPrioridadeAeronave {
         return count;
     }
 
+    public int prioridadeDaFrente() {
+        return isEmpty() ? Integer.MAX_VALUE : inicio.getPrioridade();
+    }
+
     public NoAeronave getInicio() {
         return inicio;
     }

@@ -18,7 +18,7 @@ public class AeronaveService {
     }
 
     public Aeronave atenderAeronavePorPista() {
-        int pista = gerenciador.pistaMaisCheia();
+        int pista = gerenciador.selecionarPistaParaAtendimento();
         if (pista == -1) {
             return null;
         }
