@@ -13,9 +13,9 @@ public class GerenciadorPistas {
     }
 
     public int selecionarPistaParaAtendimento() {
-        int indiceEscolhido      = -1;
-        int melhorPrioridade     = Integer.MIN_VALUE;
-        int maiorTamanhoEmpate   = -1;
+        int indiceEscolhido = -1;
+        int melhorPrioridade = Integer.MIN_VALUE;
+        int maiorTamanhoEmpate = -1;
 
         for (int i = 0; i < pistas.length; i++) {
             if (pistas[i].isEmpty()) continue;
